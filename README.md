@@ -1,11 +1,6 @@
-# Du Chat Api
-딩동유는 필요한 그룹을 분류하고 모아볼 수 있는 알림 중심의 앱 서비스입니다.
-알림과 회원 관리, 서비스 홍보를 포함한 다양한 기능을 무료로 이용할 수 있습니다.
+# Chat Api
 
-딩동유에서 제공하는 채팅 API
-
-> Dingdonu website: [click here](https://dingdongu.com/)
-> Dingdonu Document website: [click here](https://dev-docs.dingdongu.com/)
+채팅 API
 
 ## Table of Contents
   - [Features](#features)
@@ -20,7 +15,6 @@
 
 
 ## Features
-  - Du의 Chat 전용 서버
   - NodeJs/NestJs/Typescript/Scoket.io 기반의 채팅엔진
   - 1:1채팅, 그룹채팅
   - 텍스트, 이미지, 비디오, 파일등 데이터 송수신
@@ -46,54 +40,20 @@
     - 채팅방 입장시 유저의 마지막 읽은 메세지로 스크롤 이동
     - 메세지별 읽음/읽지 않은 유저 리스트
     - 푸시메세지 터치시 해당 채팅방으로 이동
-
-  * 미적용된것
     - 유저 및 채팅방 검색
     - 메세지 내용 검색
-    - 이미지/링크/비디오 갤러리
     - 발언권 제외: Mute User
+    - 이미지/링크/비디오 갤러리
     - 메세지 공유
     - 채팅방내 공지사항(Announcements) 등록
+
+  * 미적용된것
     - 답글
     - 멘션(ex: @홍길동)
     - 유저의 온/오프라인표시
     - 금지어 필터링
     - 메세지 내역 다운로드 및 이메일로 보내기(Data Export)
     - 실시간 입력표시기(Typing indicators) ***1:1방에서만 가능***
-  ### 채팅 로드맵 우선순위별로 정리
-  |항목|title|개발분야|난이도(1-5)|예상개발기간(m:월, w:주, d:일)|
-  |--------------|-----|-----|---|---|
-  |유저 및 채팅방 검색|Search user and room|클라이언트|2|2d|
-  |메세지 내용 검색|Search message by keyword|클라이언트|5|1m|
-  |이미지/링크/비디오 갤러리|image/link/video Gallery|클라이언트|4|2w|
-  |유저 발언권 제외|Mute User|클라이언트/서버|1|1d|
-  |메세지 공유|Sharing Message|클라이언트/서버|2|3d|
-  |채팅방내 공지사항 등록|Announcements|클라이언트/서버|1|1d|
-  |답글|Reply Message|클라이언트/서버|4|2w|
-  |멘션|Mention|클라이언트/서버|3|1w|
-  |유저의 온/오프라인표시|Show on/offline user|클라이언트/서버|3|1w|
-  |금지어 필터링|Filtering Forbidden word|클라이언트/서버|4|1w|
-  |메세지 내역 다운로드 및 이메일로 보내기|Data Export|클라이언트/서버|4|1w|
-  |실시간 입력표시기|Typing indicators|클라이언트/서버|||
-
-<!-- ## Install
-* mongoose 6 버전은 현재 충돌남!!!
-```bash
-yarn add @nestjs/platform-express @nestjs/platform-socket.io @nestjs/websockets @nestjs/mongoose @nestjs/microservices \
-graphql graphql-tag jsonwebtoken kafkajs mongoose@^5 \
-socket.io socket.io-redis@6.0.1 uid2 video-thumbnail-generator \
-aws-sdk axios class-transformer class-validator dotenv file-type notepack.io module-alias \
-ffmpeg-static ffprobe-static  
-
-yarn add -D @kafkajs/confluent-schema-registry @types/dotenv @types/jsonwebtoken @types/socket.io @types/socket.io-redis
-```
-
-##### package
-```javascript
-{
-  "socket.io-adapter": "^2.2.0", //해당버전에서만  socket.io-redis 가 작동됨
-}
-``` -->
 
 
 ## ServerArtitucture
@@ -292,21 +252,7 @@ interface ChatResponse<T> {
 |**JOIN_USER_ALREADY_EXISTS**|회원초대시 target_user_ids가 전부 이미 방에 존재하는 회원일 경우|target_user_ids에 유효한 회원정보를 전달|
 
 
-## Usage
-  ::: tip Production Endpoint(배포용)
-  https://chat.dingdongu.com/chat
-  :::
-
-  ::: tip Dev Endpoint(개발용)
-  https://dev-chat.dingdongu.com/chat
-  :::
-
-  ::: tip Protocol
-  WebSocket
-  :::
-
 ## ChatAPIList
-> Connect url: https://dev.chat-new.dingdongu.com/chat
 > **클라이언트 개발시 socket.io[공식문서](https://socket.io/docs/v3/) 참고**
 
 |event name|event type(<span style="color:red">emit</span>\|<span style="color:blue">listener</span>)|내용|
@@ -329,63 +275,6 @@ interface ChatResponse<T> {
 |**listenMessage_**${roomId}|<span style="color:blue">listener</span>|채팅방의 신규메세지 이벤트 수신|
 |**progress_**${syncKey}|<span style="color:blue">listener</span>|파일메세지 전송시 진행율 이벤트 수신|
 
-
-<!-- ## Chat Kafka API List
-|topic|내용|
-|------|---|
-|**SEND_ALARM_MESSAGE**|알림메세지 보내기|
-
-```javascript
-enum MessageType {
-  TEXT = "TEXT",
-  PHOTO = "PHOTO",
-  VIDEO = "VIDEO",
-  FILE = "FILE",
-  CARD = "CARD",
-  ADMIN = "ADMIN",
-}
-export enum MessageCardType {
-  ZOOM_LINK = "ZOOM_LINK",
-  REGISTER_CONFIRM = "REGISTER_CONFIRM",
-}
-interface KafkaPayload<T> {
-  from: {
-    _id: string,
-    nickName: string,
-    profileUrl: string = null,
-  };
-  to: {
-    _id: string,
-    nickName: string,
-    profileUrl: string = null,
-  };
-  messageType: MessageType;
-  rawData: {
-    content: string | Object;
-    cardType: MessageCardType,
-  }
-}
-const payload = {
-  "from": {
-    "_id": linkId,
-    "nickName": linkName
-  },
-  "to": {
-    "_id": user._id,
-    "nickName": user.nickName
-  },
-  "messageType": enum("TEXT"| "CARD"),
-  "rawData": {
-    "content": {
-      "meetingTitle": meetingTitle,
-      "meetingId": zoomMeeting.meetingId,
-      "meetingPassword": zoomMeeting.meetingPassword,
-      "meetingJoinUrl": zoomMeeting.meetingJoinUrl,
-    },
-    "cardType": "ZOOM_LINK"
-  }
-}
-``` -->
 
 #### Connect
 ```javascript
