@@ -1,0 +1,7 @@
+mutation updateMessagesRead(
+  $channelRoomId: ID!
+) {
+  updateMessagesRead(
+    channelRoomId: $channelRoomId
+  )
+}

@@ -1,0 +1,71 @@
+query myChannelRoomsJoined {
+    myChannelRoomsJoined {
+      count
+      list {
+        _id
+        name
+        type
+        joinUsers {
+          isManager
+          user {
+            _id
+            userName
+            email
+            phone
+            profileUrl
+          }
+          groupUser {
+            _id
+            nickName
+            name
+            phone
+            profileUrl
+            description
+          }
+        }
+        group {
+          _id
+          accountId
+          name
+          profileUrl
+          bgUrl
+          authStatus
+          createdAt
+        }
+        channel {
+          _id
+          name
+          createdAt
+        }
+        lastMessage {
+          _id
+          type
+          content
+          customData
+          createdAt
+          user {
+            _id
+            nickName
+            userName
+            email
+            phone
+            profileUrl
+          }
+          groupUser {
+            _id
+            nickName
+            name
+            profileUrl
+          }
+        }
+        unreadMessageCount
+        options {
+          isDuSystemChannel
+          isPublicMembers
+          isFrozen
+          isGroupAlarmChannel
+        }
+        createdAt
+      }
+    }
+  }

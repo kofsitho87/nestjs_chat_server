@@ -1,0 +1,33 @@
+subscription listenMessage(
+  $channelRoomId: ID!
+  ) {
+  listenMessage(
+    channelRoomId: $channelRoomId
+  ) {
+    action
+    message {
+      _id
+      type
+      content
+      customData
+      fileUrl
+      thumbnailUrl
+      createdAt
+      user {
+        _id
+        userName
+        profileUrl
+      }
+      groupUser {
+        _id
+        nickName
+        name
+        profileUrl
+      }
+      channelRoom {
+        _id
+        type
+      }
+    }
+  }
+}

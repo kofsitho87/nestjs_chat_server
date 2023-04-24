@@ -1,0 +1,15 @@
+query myGroupsByRoles (
+  $roles: [GroupUserRole!]!
+) {
+  myGroupsByRoles (
+    roles: $roles
+  ) {
+    count
+    list {
+      _id
+      accountId
+      name
+      profileUrl
+    }
+  }
+}

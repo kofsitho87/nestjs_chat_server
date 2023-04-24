@@ -1,0 +1,49 @@
+mutation sendFileMessage(
+  $channelRoomId: ID!
+  $file: Upload!
+  $type: MessageType!
+) {
+  sendFileMessage(
+    channelRoomId: $channelRoomId
+    file: $file
+    type: $type
+  ) {
+    _id
+    type
+    content
+    fileUrl
+    thumbnailUrl
+    customData
+    createdAt
+    readStatus {
+      userId
+      isRead
+    }
+    user {
+      _id
+      userName
+      email
+      nickName
+      phone
+      profileUrl
+      bgUrl
+      createdAt
+    }
+    groupUser {
+      _id
+      accountId
+      roleType
+      groupUserFields
+      nickName
+      description
+      profileUrl
+      bgUrl
+      status
+      name
+      phone
+      visiblePhone
+      memo
+      createdAt
+    }
+  }
+}

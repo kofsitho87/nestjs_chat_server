@@ -1,0 +1,13 @@
+query login($input: LoginInput!) {
+  login(input: $input) {
+    UT
+    user {
+      _id
+      email
+      userName
+      nickName
+      description
+      profileUrl
+    }
+  }
+}

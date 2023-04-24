@@ -1,0 +1,55 @@
+query messages(
+  $searchInput: MessageSearchInput!
+  $channelRoomId: ID!
+) {
+  messages(
+    searchInput: $searchInput
+    channelRoomId: $channelRoomId
+  ) {
+    _id
+    type
+    content
+    customData
+    fileUrl
+    thumbnailUrl
+    createdAt
+    readStatus {
+      userId
+      isRead
+    }
+    user {
+      _id
+      userName
+      nickName
+      email
+      phone
+      profileUrl
+    }
+    groupUser {
+      _id
+      nickName
+      name
+      profileUrl
+    }
+    channelRoom {
+      _id
+      name
+      type
+      joinUsers {
+        isManager
+        groupUser {
+          name
+          profileUrl
+        }
+        user {
+          userName
+        }
+      }
+      group {
+        _id
+        accountId
+        name
+      }
+    }
+  }
+}

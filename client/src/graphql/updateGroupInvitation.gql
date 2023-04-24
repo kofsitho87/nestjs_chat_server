@@ -1,0 +1,34 @@
+mutation updateGroupInvitation(
+  $isAccepted: Boolean!
+  $groupInvitationId: ID!
+) {
+  updateGroupInvitation(
+    isAccepted: $isAccepted
+    groupInvitationId: $groupInvitationId
+  ) {
+    _id
+    phone
+    accountId
+    isRead
+    isAccepted
+    content
+    profileUrl
+    createdAt
+    channel {
+      _id
+      name
+    }
+    sender {
+      _id
+      name
+      nickName
+      phone
+    }
+    receiver {
+      _id
+      name
+      nickName
+      phone
+    }
+  }
+}

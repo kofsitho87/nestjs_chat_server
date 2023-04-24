@@ -1,0 +1,22 @@
+query channelRoom($channelRoomId: ID!) {
+  channelRoom (channelRoomId:$channelRoomId) {
+    _id
+    name
+    type
+    joinUsers{
+      isManager
+      user {
+        _id
+        userName
+      }
+      groupUser {
+        _id
+        name
+      }
+    }
+    group {
+      name
+      accountId
+    }
+  }
+}

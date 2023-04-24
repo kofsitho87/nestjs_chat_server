@@ -1,0 +1,47 @@
+mutation sendMessage(
+  $channelRoomId: ID!
+  $content: String!
+) {
+  sendMessage(
+    channelRoomId: $channelRoomId
+    content: $content
+  ) {
+    _id
+    type
+    content
+    fileUrl
+    thumbnailUrl
+    customData
+    createdAt
+    readStatus {
+      userId
+      isRead
+    }
+    user {
+      _id
+      userName
+      email
+      nickName
+      phone
+      profileUrl
+      bgUrl
+      createdAt
+    }
+    groupUser {
+      _id
+      accountId
+      roleType
+      groupUserFields
+      nickName
+      description
+      profileUrl
+      bgUrl
+      status
+      name
+      phone
+      visiblePhone
+      memo
+      createdAt
+    }
+  }
+}

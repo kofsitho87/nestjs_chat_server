@@ -1,0 +1,60 @@
+subscription {
+  listenChannelRoom {
+    action
+    channelRoom {
+      _id
+      name
+      type
+      group {
+        _id
+        name
+        accountId
+      }
+      joinUsers {
+        isManager
+        groupUser {
+          _id
+          name
+          nickName
+          profileUrl
+          roleType
+          description
+          status
+          phone
+        }
+        user {
+          _id
+          userName
+          email
+          phone
+          description
+          gender
+          profileUrl
+          bgUrl
+        }
+      }
+      lastMessage {
+        _id
+        content
+        customData
+        createdAt
+        user {
+          _id
+          userName
+          email
+          phone
+        }
+        groupUser {
+          _id
+          nickName
+          name
+        }
+      }
+      channel {
+        _id
+      }
+      unreadMessageCount
+      createdAt
+    }
+  }
+}

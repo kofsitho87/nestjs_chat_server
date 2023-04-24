@@ -1,0 +1,5 @@
+mutation createChatRoom(
+  $input: CreateChatRoomInput!
+) {
+  createChatRoom(input: $input)
+}
